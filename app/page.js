@@ -1,103 +1,155 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useState } from "react";
+import DiagonalRibbon from "@/components/DiagonalRibbon";
+import HeroImageSlider from "@/components/HeroSection";
+import DiagonalSection from "@/components/DiagonalSection";
+
+export default function HomePage() {
+  const [showDiagonal, setShowDiagonal] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowDiagonal(window.scrollY > 80);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative min-h-screen bg-gradient-to-b from-[#fff9f7] to-[#fffdfc] text-[#3d2b1f] overflow-x-hidden">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      {/* NAVBAR */}
+      <header className="top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md">
+        <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="relative flex items-center justify-center">
+            <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-[#f7bfa0] flex items-center justify-center">
+              <img
+                src="/Heros/Logo.jpg"
+                alt="Sosa's Pastries & Catering"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            {/* Circular text */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <svg
+                viewBox="0 0 100 100"
+                className="w-24 h-24 absolute -z-10 text-[#f7bfa0]"
+              >
+                <defs>
+                  <path
+                    id="circlePath"
+                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                  />
+                </defs>
+                <text fontSize="7" fill="#f7bfa0" letterSpacing="1.5">
+                  <textPath href="#circlePath" startOffset="0%">
+                    Sosa's Pastries & Catering • Sosa's Pastries & Catering •
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+          </div>
+          
+          <ul className="hidden md:flex gap-6 text-sm">
+            <li><a href="#about" className="hover:underline">About</a></li>
+            <li><a href="#services" className="hover:underline">Services</a></li>
+            <li><a href="#gallery" className="hover:underline">Gallery</a></li>
+            <li><a href="#contact" className="hover:underline">Contact</a></li>
+          </ul>
+          <button className="bg-[#f7bfa0] px-4 py-2 rounded-full hidden md:block hover:bg-[#f4a77d] transition-colors">
+            Request a Quote
+          </button>
+        </nav>
+      </header>
+
+      {/* Diagonal Ribbon with Phone */}
+      <DiagonalRibbon visible={showDiagonal} phoneNumber="401-383-3631" />
+
+      <main className="pt-20">
+        {/* HERO SECTION */}
+        <section className="relative flex flex-col lg:flex-row items-center justify-between px-8 py-16 lg:px-24 overflow-hidden min-h-[90vh]">
+          <div className="max-w-lg z-10">
+            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-4">
+              Making Every Celebration Taste Like Joy
+            </h1>
+            <p className="text-lg text-gray-700 mb-6">
+              From dreamy wedding cakes to unforgettable event experiences — 
+              Sosa's Catering brings your special moments to life with a touch of magic.
+            </p>
+            <button className="bg-[#f7bfa0] hover:bg-[#f4a77d] text-white text-lg px-6 py-3 rounded-2xl transition-all">
+              Let's Create Magic Together
+            </button>
+          </div>
+
+          {/* Animated Hero Image Slider */}
+          <HeroImageSlider />
+        </section>
+
+        {/* ABOUT SECTION with diagonal top */}
+        <DiagonalSection 
+          bgColor="#ffffff" 
+          diagonalPosition="top"
+          diagonalDirection="right"
+          className="py-20"
+        >
+          <div className="flex flex-col lg:flex-row items-center gap-10 px-8 lg:px-24">
+            <div className="relative w-full lg:w-1/2 h-[400px] rounded-3xl overflow-hidden">
+              <img 
+                src="/sosa-about.jpg" 
+                alt="About Sosa" 
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="max-w-lg">
+              <h2 className="text-3xl font-serif font-bold mb-4">Meet Sosa</h2>
+              <p className="text-gray-700 mb-4">
+                Hi, I'm Sosa — a passionate baker and event caterer who believes every celebration deserves a personal touch. 
+                From intricate cakes to surprise setups, I put heart into every detail because moments like these matter.
+              </p>
+              <p className="text-gray-700">
+                Whether it's a wedding, birthday, or intimate event, I'll help you make it beautifully memorable.
+              </p>
+            </div>
+          </div>
+        </DiagonalSection>
+
+        {/* SERVICES SECTION with background image and diagonal */}
+        <DiagonalSection 
+          bgImage="/service-bg.jpg"
+          diagonalPosition="both"
+          diagonalDirection="left"
+          className="py-32"
+        >
+          <div className="max-w-4xl mx-auto text-center text-white px-8">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+              Our Services
+            </h2>
+            <p className="text-lg md:text-xl mb-8 opacity-95">
+              From custom cakes to full event catering, we bring your vision to life with creativity and care.
+            </p>
+            <button className="bg-white text-[#8b3a3a] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all">
+              Explore Services
+            </button>
+          </div>
+        </DiagonalSection>
+
+        {/* GALLERY SECTION */}
+        <DiagonalSection 
+          bgColor="#f5f5f5" 
+          diagonalPosition="top"
+          diagonalDirection="right"
+          className="py-20"
+        >
+          <div className="px-8 lg:px-24 text-center">
+            <h2 className="text-3xl font-serif font-bold mb-12">Gallery</h2>
+            <p className="text-gray-600 mb-8">
+              A glimpse of our creations and memorable celebrations
+            </p>
+            {/* Add gallery grid here */}
+          </div>
+        </DiagonalSection>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
