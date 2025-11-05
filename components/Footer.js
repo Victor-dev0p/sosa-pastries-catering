@@ -6,16 +6,6 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-gray-900 text-gray-300 pt-24 pb-8 px-6 md:px-12 lg:px-24">
-      
-      {/* Top Diagonal from Contact Section */}
-      <div 
-        className="absolute top-0 left-0 w-0 h-0 -mt-1"
-        style={{
-          borderStyle: 'solid',
-          borderWidth: 'clamp(80px, 10vw, 150px) 100vw 0 0',
-          borderColor: '#1f2937 transparent transparent transparent'
-        }}
-      />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         

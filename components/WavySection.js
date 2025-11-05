@@ -2,22 +2,13 @@
 
 import { motion } from 'framer-motion';
 
-/**
- * WavySection Component
- * Creates a 3-point diagonal/wave-like shape at top or bottom of a section
- *
- * @param {string} position - 'top' or 'bottom'
- * @param {string} bgColor - Background color of the wave (should match section bg)
- * @param {string} className - Additional classes for the section
- * @param {ReactNode} children - Section content
- */
 export default function WavySection({
   position = 'top',
   bgColor = '#fff9f7',
   className = '',
   children
 }) {
-  // Custom 3-point path: rise (1), dip (2), peak (3)
+  // Default wave paths
   const wavePaths = {
     top: `
       M0,80
@@ -38,26 +29,62 @@ export default function WavySection({
       L500,60
       L0,20
       Z
-    `
+    `,
+  };
+
+  // Softer mobile wave (shallower curve)
+  const mobileWavePaths = {
+    top: `
+      M0,70
+      L500,50
+      L900,75
+      L1350,40
+      L1500,60
+      L1500,100
+      L0,100
+      Z
+    `,
+    bottom: `
+      M0,0
+      L1500,0
+      L1500,40
+      L1350,50
+      L900,20
+      L500,45
+      L0,25
+      Z
+    `,
   };
 
   return (
-    <section
-      className={`relative ${className}`}
-      style={{ backgroundColor: bgColor }}
-    >
+    <section className={`relative ${className}`} style={{ backgroundColor: bgColor }}>
       {/* Top Wave */}
       {position === 'top' && (
-        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none -translate-y-full">
-          <svg
-            viewBox="0 0 1500 100"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            className="w-full h-16 md:h-20 lg:h-24"
-          >
-            <path d={wavePaths.top} fill={bgColor} />
-          </svg>
-        </div>
+        <>
+          {/* Desktop/Tablet Wave */}
+          <div className="hidden sm:block absolute top-0 left-0 w-full overflow-hidden leading-none -translate-y-full">
+            <svg
+              viewBox="0 0 1500 100"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              className="w-full h-16 md:h-20 lg:h-24"
+            >
+              <path d={wavePaths.top} fill={bgColor} />
+            </svg>
+          </div>
+
+          {/* Mobile Wave */}
+          <div className="block sm:hidden absolute top-0 left-0 w-full overflow-hidden leading-none -translate-y-full">
+            <svg
+              viewBox="0 0 1500 100"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              className="w-full h-12"
+            >
+              <path d={mobileWavePaths.top} fill={bgColor} />
+            </svg>
+          </div>
+        </>
       )}
 
       {/* Content */}
@@ -65,16 +92,31 @@ export default function WavySection({
 
       {/* Bottom Wave */}
       {position === 'bottom' && (
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none translate-y-full">
-          <svg
-            viewBox="0 0 1500 100"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            className="w-full h-16 md:h-20 lg:h-24"
-          >
-            <path d={wavePaths.bottom} fill={bgColor} />
-          </svg>
-        </div>
+        <>
+          {/* Desktop/Tablet Wave */}
+          <div className="hidden sm:block absolute bottom-0 left-0 w-full overflow-hidden leading-none translate-y-full">
+            <svg
+              viewBox="0 0 1500 100"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              className="w-full h-16 md:h-20 lg:h-24"
+            >
+              <path d={wavePaths.bottom} fill={bgColor} />
+            </svg>
+          </div>
+
+          {/* Mobile Wave */}
+          <div className="block sm:hidden absolute bottom-0 left-0 w-full overflow-hidden leading-none translate-y-full">
+            <svg
+              viewBox="0 0 1500 100"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+              className="w-full h-12"
+            >
+              <path d={mobileWavePaths.bottom} fill={bgColor} />
+            </svg>
+          </div>
+        </>
       )}
     </section>
   );

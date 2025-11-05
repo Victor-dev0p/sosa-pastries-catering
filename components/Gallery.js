@@ -5,62 +5,52 @@ import { motion, AnimatePresence } from "framer-motion";
 const galleryCategories = [
   {
     name: "Wedding",
-    mainImage: "/gallery/wedding-main.jpg",
+    mainImage: "/Heros/hero2.jpg",
     images: [
-      "/gallery/wedding1.jpg",
-      "/gallery/wedding2.jpg",
-      "/gallery/wedding3.jpg",
-      "/gallery/wedding4.jpg",
+      "/Work/tradcake.jpg",
+      "/Work/bridal.jpg",
+      "/Work/regwed.jpg",
+      "/Work/cutewedcake.webp",
     ],
   },
   {
     name: "Birthday",
-    mainImage: "/gallery/birthday-main.jpg",
+    mainImage: "/Work/60cap.jpg",
     images: [
-      "/gallery/birthday1.jpg",
-      "/gallery/birthday2.jpg",
-      "/gallery/birthday3.jpg",
-      "/gallery/birthday4.jpg",
+      "/Work/60th.jpg",
+      "/Work/wafer.jpg",
+      "/Work/feather.jpg",
+      "/Work/bdaycheers.jpg",
     ],
   },
   {
-    name: "Corporate",
-    mainImage: "/gallery/corporate-main.jpg",
+    name: "Catering",
+    mainImage: "/Heros/hero3.jpg",
     images: [
-      "/gallery/corporate1.jpg",
-      "/gallery/corporate2.jpg",
-      "/gallery/corporate3.jpg",
-      "/gallery/corporate4.jpg",
+      "/Work/sosapack.jpg",
+      "/Work/foodtray.jpg",
+      "/Work/foodtray1.jpg",
+      "/Work/foodbank.jpg",
     ],
   },
   {
     name: "Custom",
-    mainImage: "/gallery/custom-main.jpg",
+    mainImage: "/Work/custom1.jpg",
     images: [
-      "/gallery/custom1.jpg",
-      "/gallery/custom2.jpg",
-      "/gallery/custom3.jpg",
-      "/gallery/custom4.jpg",
+      "/Work/parfait.jpg",
+      "/Work/custom.jpg",
+      "/Work/Tezza-C.webp",
+      "/Work/wafer1.jpg",
     ],
   },
   {
     name: "Meal Package",
-    mainImage: "/gallery/meal-main.jpg",
+    mainImage: "/Work/foodbox.jpg",
     images: [
-      "/gallery/meal1.jpg",
-      "/gallery/meal2.jpg",
-      "/gallery/meal3.jpg",
-      "/gallery/meal4.jpg",
-    ],
-  },
-  {
-    name: "Event Setup",
-    mainImage: "/gallery/event-main.jpg",
-    images: [
-      "/gallery/event1.jpg",
-      "/gallery/event2.jpg",
-      "/gallery/event3.jpg",
-      "/gallery/event4.jpg",
+      "/Work/foodbox1.jpg",
+      "/Work/blacksoupbox.jpg",
+      "/Work/soup.jpg",
+      "/Work/smallchops.jpg",
     ],
   },
 ];
@@ -73,7 +63,7 @@ export default function Gallery() {
     if (paused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % galleryCategories.length);
-    }, 7000); // switch every 7s
+    }, 7000);
     return () => clearInterval(interval);
   }, [paused]);
 
@@ -86,18 +76,22 @@ export default function Gallery() {
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
         {/* LEFT: Main Image */}
-        <div className="w-full lg:w-1/2 relative flex justify-center">
+        <div className="w-full lg:w-1/2 relative flex justify-center items-center">
           <AnimatePresence mode="wait">
-            <motion.img
+            <motion.div
               key={currentCategory.mainImage}
-              src={currentCategory.mainImage}
-              alt={currentCategory.name}
               initial={{ opacity: 0, x: -80 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 80 }}
               transition={{ duration: 0.8 }}
-              className="rounded-3xl shadow-lg object-cover w-full h-[450px]"
-            />
+              className="rounded-3xl shadow-lg overflow-hidden w-full max-h-[500px] flex justify-center items-center bg-[#f5f2f0]"
+            >
+              <img
+                src={currentCategory.mainImage}
+                alt={currentCategory.name}
+                className="object-contain w-full h-full"
+              />
+            </motion.div>
           </AnimatePresence>
 
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white/80 text-[#3d2b1f] text-sm px-4 py-2 rounded-full font-medium backdrop-blur">
@@ -113,26 +107,24 @@ export default function Gallery() {
         >
           <motion.div
             key={currentCategory.name}
-            initial={{ x: "100%" }}
-            animate={{ x: "-100%" }}
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
             transition={{
               repeat: Infinity,
-              duration: 12,
+              duration: 14,
               ease: "linear",
               repeatDelay: 0.5,
             }}
             className="flex gap-6"
           >
-            {[...currentCategory.images, ...currentCategory.images].map(
-              (img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt={`${currentCategory.name}-${i}`}
-                  className="w-[220px] h-[280px] object-cover rounded-2xl shadow-md"
-                />
-              )
-            )}
+            {currentCategory.images.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                alt={`${currentCategory.name}-${i}`}
+                className="w-[220px] h-[280px] object-cover rounded-2xl shadow-md"
+              />
+            ))}
           </motion.div>
         </div>
       </div>
