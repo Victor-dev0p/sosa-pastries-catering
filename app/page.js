@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import FloatingButtons from "@/components/FloatingButtons";
+import FloatingButtons, { smoothScrollTo } from "@/components/FloatingButtons";
 import DiagonalRibbon from "@/components/DiagonalRibbon";
 import HeroImageSlider from "@/components/HeroSection";
 import About from "@/components/About";
@@ -27,8 +27,17 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleScrollToServices = (e) => {
+    e.preventDefault();
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      const targetPosition = servicesSection.offsetTop - 80; // 80px offset for navbar
+      smoothScrollTo(targetPosition, 800); // 800ms duration for smooth scroll
+    }
+  };
+
   return (
-    <div className="relative min-h-screen bg-black text-[#3d2b1f] overflow-x-hidden scroll-smooth">
+    <div className="relative min-h-screen bg-white text-[#3A2E2E] overflow-x-hidden scroll-smooth">
 
       {/* Diagonal Ribbon with Phone */}
       <DiagonalRibbon visible={showDiagonal} phoneNumber="401-383-3631" />
@@ -42,14 +51,18 @@ export default function HomePage() {
           <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left side - Text content */}
             <div className="z-10 order-2 lg:order-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-3 sm:mb-4 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-3 sm:mb-4 leading-tight text-[#3A2E2E]">
                 Making Every Celebration Taste Like Joy
               </h1>
-              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6">
+              <p className="text-base sm:text-lg text-[#3A2E2E] mb-4 sm:mb-6">
                 From dreamy wedding cakes to unforgettable event experiences — 
                 Sosa's Catering brings your special moments to life with a touch of magic.
               </p>
-              <button className="bg-[#f7bfa0] hover:bg-[#f4a77d] text-white text-base sm:text-lg px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl transition-all w-full sm:w-auto">
+              <button
+                onClick={handleScrollToServices}
+                className="bg-[#FA812F] hover:bg-[#E01E00] text-white text-base px-5 py-2.5 rounded-2xl transition-all sm:w-auto font-medium
+                  max-md:px-1.5 max-md:py-1.5 max-md:text-xs max-md:font-medium"
+              >
                 Let's Create Magic Together
               </button>
             </div>

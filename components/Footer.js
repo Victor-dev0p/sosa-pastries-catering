@@ -1,100 +1,165 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
 import Link from 'next/link';
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTiktok,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    // Add newsletter subscription logic here
+    console.log('Subscribing:', email);
+    setEmail('');
+  };
 
   return (
-    <footer className="relative bg-gray-900 text-gray-300 pt-24 pb-8 px-6 md:px-12 lg:px-24">
-
-      <div className="relative z-10 max-w-7xl mx-auto">
-        
-        {/* Footer Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
-          {/* About Column */}
-          <div>
-            <h3 className="text-2xl font-serif font-bold text-amber-500 mb-4 tracking-wide">
-              Sosa's Catering
-            </h3>
-            <p className="text-gray-400 leading-relaxed mb-4">
-              Crafting memorable moments through exceptional baked creations and personalized service.
-            </p>
-            <div className="flex gap-4 mt-6">
-              <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-amber-500 transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                </svg>
-              </a>
+    <footer className="relative bg-gradient-to-b from-[#FFF8E7] via-[#F9B233] to-[#FA812F] pt-32 pb-8 px-6 md:px-12 lg:px-24">
+      
+      {/* Newsletter Overlay Section */}
+      <div className="absolute top-0 left-0 w-full z-20 max-md:mt-10 md:mt-10" style={{ transform: 'translateY(-50%)' }}>
+        <div className="w-11/12 max-w-4xl mx-auto px-0 md:px-6"> 
+          <div className="bg-white shadow-2xl rounded-lg p-8 md:p-12 border-2 border-[#FA812F]">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              
+              <div className="text-center md:text-left md:flex-1">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3A2E2E] mb-2 uppercase tracking-tight">
+                  GET UPDATES & STAY CONNECTED.
+                </h3>
+                <p className="text-base sm:text-lg text-gray-700 font-serif">
+                  Subscribe To Our Newsletter
+                </p>
+              </div>
+              
+              <div className="w-full md:w-auto md:flex-shrink-0">
+                <form onSubmit={handleSubscribe} className="flex flex-col gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your Email"
+                    className="w-full px-4 py-3 border-2 border-[#FA812F] rounded-md focus:outline-none focus:border-[#E01E00] text-gray-700"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="w-full px-8 py-3 bg-[#FA812F] hover:bg-[#E01E00] text-white font-semibold rounded-md transition-colors uppercase tracking-wide"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Services Column */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4 tracking-wide">Services</h4>
-            <ul className="space-y-3">
-              <li><Link href="/services/wedding-cakes" className="hover:text-amber-500 transition-colors">Wedding Cakes</Link></li>
-              <li><Link href="/services/corporate" className="hover:text-amber-500 transition-colors">Corporate Events</Link></li>
-              <li><Link href="/services/decor" className="hover:text-amber-500 transition-colors">Event Décor</Link></li>
-              <li><Link href="/services/meals" className="hover:text-amber-500 transition-colors">Meal Packages</Link></li>
-            </ul>
+      {/* Main Footer Content */}
+      <div className="relative z-10 max-w-7xl mx-auto pt-20">
+        
+        {/* Logo - Cursive Script Style and Clickable */}
+        <div className="flex justify-center mb-8">
+          <Link href="/">
+            <h2 className="text-6xl md:text-7xl font-cursive text-[#3A2E2E] hover:text-[#FA812F] transition-colors cursor-pointer" style={{ fontFamily: "'Dancing Script', cursive" }}>
+              Sosa's
+            </h2>
+          </Link>
+        </div>
+
+        {/* Navigation */}
+        <nav className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-8 text-[#3A2E2E]">
+          {/* Services Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setIsServicesOpen(!isServicesOpen)}
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+              className="hover:text-[#FA812F] transition-colors font-medium flex items-center gap-1"
+            >
+              Catering & Events
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isServicesOpen && (
+              <div 
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white rounded-lg shadow-xl py-2 min-w-[200px] z-30 border border-[#FA812F]"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                <Link href="/services/wedding-cakes" className="block px-4 py-2 text-gray-700 hover:bg-[#FFF8E7] hover:text-[#FA812F] transition-colors text-sm">
+                  Wedding Cakes
+                </Link>
+                <Link href="/services/corporate" className="block px-4 py-2 text-gray-700 hover:bg-[#FFF8E7] hover:text-[#FA812F] transition-colors text-sm">
+                  Corporate Events
+                </Link>
+                <Link href="/services/decor" className="block px-4 py-2 text-gray-700 hover:bg-[#FFF8E7] hover:text-[#FA812F] transition-colors text-sm">
+                  Event Décor
+                </Link>
+                <Link href="/services/meals" className="block px-4 py-2 text-gray-700 hover:bg-[#FFF8E7] hover:text-[#FA812F] transition-colors text-sm">
+                  Meal Packages
+                </Link>
+              </div>
+            )}
           </div>
+          <Link href="/gallery" className="hover:text-[#FA812F] transition-colors font-medium">
+            Gallery
+          </Link>
+          <Link href="/quote" className="hover:text-[#FA812F] transition-colors font-medium">
+            Quote
+          </Link>
+          <Link href="/about" className="hover:text-[#FA812F] transition-colors font-medium">
+            About
+          </Link>
+          <Link href="/contact" className="hover:text-[#FA812F] transition-colors font-medium">
+            Contact
+          </Link>
+        </nav>
 
-          {/* Quick Links Column */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4 tracking-wide">Quick Links</h4>
-            <ul className="space-y-3">
-              <li><Link href="/#about" className="hover:text-amber-500 transition-colors">About Us</Link></li>
-              <li><Link href="/#gallery" className="hover:text-amber-500 transition-colors">Gallery</Link></li>
-              <li><Link href="/testimonials" className="hover:text-amber-500 transition-colors">Testimonials</Link></li>
-              <li><Link href="/#contact" className="hover:text-amber-500 transition-colors">Contact</Link></li>
-            </ul>
+        {/* Divider */}
+        <div className="border-t-2 border-[#FA812F] my-6 max-w-4xl mx-auto"></div>
+
+        {/* Contact Info */}
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mb-6 text-[#3A2E2E]">
+          <div className="flex items-center gap-2">
+            <span>📍</span>
+            <span className="font-medium">Benin City, Nigeria</span>
           </div>
-
-          {/* Contact Column */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4 tracking-wide">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <span className="mt-1">📍</span>
-                <span>Lagos, Nigeria</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1">📞</span>
-                <span>+234 XXX XXX XXXX</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1">📧</span>
-                <span>hello@sosascatering.com</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1">🕐</span>
-                <span>Mon - Sat: 9AM - 7PM</span>
-              </li>
-            </ul>
+          <div className="flex items-center gap-2">
+            <span>📞</span>
+            <span className="font-medium">+234 810 646 6601</span>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 mt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm text-center md:text-left">
-              © {currentYear} Sosa's Catering. All Rights Reserved.
-            </p>
-            <p className="text-gray-500 text-sm text-center md:text-right">
-              Made with love by <span className="text-amber-500">Victor</span> 💛
-            </p>
-          </div>
+        {/* Social Media Icons */}
+        <div className="flex justify-center gap-6 mb-10 text-[#3A2E2E] text-xl">
+          <a href="https://www.facebook.com/share/1Zks2HQN7e/?mibextid=wwXIfr" className="hover:text-[#1877F2] transition">
+            <FaFacebookF />
+          </a>
+          <a href="https://www.instagram.com/_xoxah/#" className="hover:text-[#E4405F] transition">
+            <FaInstagram />
+          </a>
+          <a href="https://www.tiktok.com/@chefxoxah3?_r=1&_t=ZS-919PI0A45Mi" className="hover:text-[#000000] transition">
+            <FaTiktok />
+          </a>
+          <a href="https://x.com/_xoxah?s=21" className="hover:text-[#000000] transition">
+            <FaXTwitter />
+          </a>
+        </div>
+
+        {/* Bottom Copyright */}
+        <div className="text-center text-sm text-[#3A2E2E]">
+          <p className="mb-2">© {currentYear} Sosa's Catering | All Rights Reserved.</p>
+          <p>
+            Made with love by <span className="font-semibold">Victor</span> 💛
+          </p>
         </div>
       </div>
     </footer>

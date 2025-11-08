@@ -24,3 +24,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html, body {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* globals.css */
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Translates the full width of one set of duplicated content */
+    transform: translateX(-50%); 
+  }
+}
+
+/* Define the utility class used in the component */
+.animate-marquee {
+  animation: marquee-scroll 20s linear infinite; /* 60s is from the component's scrollDuration */
+}

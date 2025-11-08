@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import PageWrapper from "@/components/PageWrapper";
+import VisualMarquee from "@/components/VisualMarquee";
 
 const InputField = ({ id, type, placeholder, value, onChange, error, className = '' }) => (
   <div className="flex flex-col">
@@ -11,10 +13,10 @@ const InputField = ({ id, type, placeholder, value, onChange, error, className =
       placeholder={placeholder + " *"}
       value={value}
       onChange={onChange}
-      className={`border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#8b3a3a] 
-      ${error ? 'border-red-500' : 'border-gray-300'} ${className}`}
+      className={`border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-[#FA812F] 
+      ${error ? 'border-[#E01E00]' : 'border-gray-300'} ${className}`}
     />
-    {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+    {error && <p className="text-[#E01E00] text-xs mt-1">{error}</p>}
   </div>
 );
 
@@ -27,7 +29,7 @@ export default function Contact() {
     });
     const [errors, setErrors] = useState({});
     const [loading, setLoading] = useState(false);
-    const [submissionStatus, setSubmissionStatus] = useState(null); // 'success' or 'error'
+    const [submissionStatus, setSubmissionStatus] = useState(null);
 
     useEffect(() => {
       if (submissionStatus) {
@@ -39,7 +41,6 @@ export default function Contact() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
-        // Clear error as user types
         if (errors[name]) {
             setErrors(prev => ({ ...prev, [name]: null }));
         }
@@ -78,7 +79,6 @@ export default function Contact() {
 
             if (response.ok) {
                 setSubmissionStatus('success');
-                // Clear form upon success
                 setFormData({ fullName: '', email: '', subject: '', message: '' });
             } else {
                 setSubmissionStatus('error');
@@ -93,14 +93,15 @@ export default function Contact() {
     };
 
     return (
-        <main className="min-h-screen bg-[#fff9f7] text-gray-800">
+        <PageWrapper>
+        <main className="min-h-screen bg-white text-[#3A2E2E] mb-30">
             {/* PAGE HEADER */}
-            <section className="text-center py-20 bg-gradient-to-b from-[#f9e1db] to-[#fff9f7]">
-                <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4">
+            <section className="text-center py-20 bg-gradient-to-b from-[#FFF8E7] via-[#F9B233]/30 to-white">
+                <h1 className="text-4xl md:text-5xl font-bold font-serif mb-4 text-[#3A2E2E]">
                     Contact Us
                 </h1>
-                <p className="max-w-2xl mx-auto text-gray-700">
-                    Have a question, event idea, or special request? We’d love to hear from you.
+                <p className="max-w-2xl mx-auto text-[#3A2E2E]">
+                    Have a question, event idea, or special request? We'd love to hear from you.
                 </p>
             </section>
 
@@ -108,37 +109,37 @@ export default function Contact() {
             <section className="max-w-6xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-16">
                 {/* CONTACT INFO */}
                 <div className="space-y-6">
-                    <h2 className="text-3xl font-serif font-semibold">Get in Touch</h2>
-                    <p className="text-gray-700">
-                        Whether it’s an intimate gathering or a large event, Sosa is ready to bring your
+                    <h2 className="text-3xl font-serif font-semibold text-[#3A2E2E]">Get in Touch</h2>
+                    <p className="text-[#3A2E2E]">
+                        Whether it's an intimate gathering or a large event, Sosa is ready to bring your
                         vision to life. Reach out through any of the channels below or fill out the form
                         to get started.
                     </p>
 
                     <div className="space-y-4">
                         <div>
-                            <h3 className="font-semibold text-lg">📍 Address</h3>
-                            <p className="text-gray-600">123 Celebration Street, Lagos, Nigeria</p>
+                            <h3 className="font-semibold text-lg text-[#3A2E2E]">📍 Address</h3>
+                            <p className="text-[#3A2E2E]">123 Celebration Street, Lagos, Nigeria</p>
                         </div>
                         <div>
-                            <h3 className="font-semibold text-lg">📞 Phone</h3>
-                            <p className="text-gray-600">+234 810 646 6601</p>
+                            <h3 className="font-semibold text-lg text-[#3A2E2E]">📞 Phone</h3>
+                            <p className="text-[#3A2E2E]">+234 810 646 6601</p>
                         </div>
                         <div>
-                            <h3 className="font-semibold text-lg">📧 Email</h3>
-                            <p className="text-gray-600">buzugbeeseosa@gmail.com</p>
+                            <h3 className="font-semibold text-lg text-[#3A2E2E]">📧 Email</h3>
+                            <p className="text-[#3A2E2E]">buzugbeeseosa@gmail.com</p>
                         </div>
                         <div>
-                            <h3 className="font-semibold text-lg">🕒 Business Hours</h3>
-                            <p className="text-gray-600">Mon – Sat: 9:00 AM – 7:00 PM</p>
-                            <p className="text-gray-600">Sunday: Closed</p>
+                            <h3 className="font-semibold text-lg text-[#3A2E2E]">🕒 Business Hours</h3>
+                            <p className="text-[#3A2E2E]">Mon – Sat: 9:00 AM – 7:00 PM</p>
+                            <p className="text-[#3A2E2E]">Sunday: Closed</p>
                         </div>
                     </div>
                 </div>
 
                 {/* CONTACT FORM */}
-                <motion.form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-lg p-8 space-y-6">
-                    <h2 className="text-2xl font-serif font-semibold text-center mb-4">
+                <motion.form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-lg p-8 space-y-6 border-2 border-[#FFF8E7]">
+                    <h2 className="text-2xl font-serif font-semibold text-center mb-4 text-[#3A2E2E]">
                         Send Us a Message
                     </h2>
 
@@ -179,16 +180,16 @@ export default function Contact() {
                             placeholder="Your Message... *"
                             value={formData.message}
                             onChange={handleInputChange}
-                            className={`border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#8b3a3a] 
-                                ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
+                            className={`border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-[#FA812F] 
+                                ${errors.message ? 'border-[#E01E00]' : 'border-gray-300'}`}
                         ></textarea>
-                        {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+                        {errors.message && <p className="text-[#E01E00] text-xs mt-1">{errors.message}</p>}
                     </div>
 
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-[#8b3a3a] text-white font-semibold py-3 rounded-lg hover:bg-[#702e2e] transition disabled:opacity-50 flex items-center justify-center"
+                        className="w-full bg-[#FA812F] text-white font-semibold py-3 rounded-lg hover:bg-[#E01E00] transition disabled:opacity-50 flex items-center justify-center"
                     >
                         {loading ? (
                             <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -199,21 +200,8 @@ export default function Contact() {
                 </motion.form>
             </section>
 
-            {/* CTA SECTION */}
-            <section className="text-center py-20 bg-[#8b3a3a] text-white">
-                <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-4">
-                    Let’s Bring Your Celebration to Life
-                </h2>
-                <p className="max-w-2xl mx-auto mb-8">
-                    From concept to execution, we’re here to craft unforgettable moments.
-                </p>
-                <a
-                    href="/services"
-                    className="inline-block bg-white text-[#8b3a3a] font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition"
-                >
-                    Explore Our Services »
-                </a>
-            </section>
+            <VisualMarquee />
         </main>
+        </PageWrapper>
     );
 }

@@ -74,7 +74,29 @@ export default function Gallery() {
       id="gallery"
       className="bg-[#fff9f7] py-20 px-6 overflow-hidden relative"
     >
+
+      {/* ✅ HEADER */}
+      <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="px-4 py-1 bg-[#f9e4c7] rounded-full text-sm font-medium text-gray-700 inline-block">
+          SIGNATURE MOMENTS
+        </div>
+
+        <h2 className="text-4xl md:text-4xl font-serif font-bold mt-6 leading-tight max-md:text-2xl">
+          CAKES, CATERING & EVENTS <br />
+          <span className="bg-gradient-to-r from-[#F9B233] via-[#FA812F] to-[#E01E00] bg-clip-text text-transparent text-2xl max-md:text-xl">
+            Our Signature Work & Gallery
+          </span>
+        </h2>
+
+        <p className="text-lg md:text-xl text-gray-700 mt-6">
+          Explore the breadth of our design and culinary capabilities across weddings,
+          birthdays, custom orders, and full-service catering.
+        </p>
+      </div>
+
+      {/* ✅ ORIGINAL GALLERY CONTENT BELOW — UNTOUCHED */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+        
         {/* LEFT: Main Image */}
         <div className="w-full lg:w-1/2 relative flex justify-center items-center">
           <AnimatePresence mode="wait">

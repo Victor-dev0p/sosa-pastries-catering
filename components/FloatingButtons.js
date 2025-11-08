@@ -3,6 +3,30 @@
 import { useState, useEffect } from "react";
 import { Menu, ChevronUp, X } from "lucide-react";
 
+// Smooth scroll utility function
+export const smoothScrollTo = (targetPosition, duration = 500) => {
+  const startPosition = window.scrollY;
+  const distance = targetPosition - startPosition;
+  let startTime = null;
+
+  const animation = (currentTime) => {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = ease(timeElapsed, startPosition, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) requestAnimationFrame(animation);
+  };
+
+  const ease = (t, b, c, d) => {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+  };
+
+  requestAnimationFrame(animation);
+};
+
 export default function FloatingButtons({ 
   showScrollTop = false
 }) {
@@ -19,10 +43,7 @@ export default function FloatingButtons({
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    smoothScrollTo(0, 500);
   };
 
   const toggleSidebar = () => {
@@ -72,7 +93,7 @@ export default function FloatingButtons({
 
       {/* Sidebar Menu */}
       <div
-        className={`fixed top-0 left-0 h-full w-[150px] sm:w-[100px] bg-white shadow-2xl z-[70] transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed inset-y-0 left-0 h-full w-[150px] md:w-[220px] bg-white shadow-2xl z-[70] transform transition-transform duration-300 ease-in-out lg:hidden ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -132,7 +153,8 @@ export default function FloatingButtons({
 
           {/* CTA Button in Sidebar */}
           <div className="mt-8">
-            <button className="w-full bg-[#f7bfa0] px-2 py-1 rounded-full hover:bg-[#f4a77d] transition-colors text-white font-medium text-xs">
+            <button className="w-full bg-[#f7bfa0] px-2 py-1 md:px-4 md:py-4 rounded-full hover:bg-[#f4a77d] transition-colors text-white font-medium text-xs
+            md:text-sm">
               Request a Quote
             </button>
           </div>

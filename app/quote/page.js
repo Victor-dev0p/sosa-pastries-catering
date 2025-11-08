@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import PageWrapper from '@/components/PageWrapper';
 
 // --- CONFIG ---
 const headerImages = [
@@ -13,8 +14,8 @@ const headerImages = [
 
 const InputField = ({ label, id, placeholder, type = 'text', required = false, children, className = '', value, onChange, error, name }) => (
   <div className={`flex flex-col ${className}`}>
-    <label htmlFor={id} className="text-gray-800 text-sm font-medium mb-1">
-      {label} {required && <span className="text-red-500">*</span>}
+    <label htmlFor={id} className="text-[#3A2E2E] text-sm font-medium mb-1">
+      {label} {required && <span className="text-[#E01E00]">*</span>}
     </label>
     {children || (
       <input
@@ -25,11 +26,11 @@ const InputField = ({ label, id, placeholder, type = 'text', required = false, c
         value={value || ''}
         onChange={onChange}
         name={name || id}
-        className={`p-3 bg-white/70 rounded-lg border focus:bg-white outline-none transition duration-200 text-gray-700 
-          ${error ? 'border-red-500' : 'border-transparent focus:border-blue-400'}`}
+        className={`p-3 bg-white/70 rounded-lg border focus:bg-white outline-none transition duration-200 text-[#3A2E2E] 
+          ${error ? 'border-[#E01E00]' : 'border-transparent focus:border-[#FA812F]'}`}
       />
     )}
-    {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+    {error && <p className="text-[#E01E00] text-xs mt-1">{error}</p>}
   </div>
 );
 
@@ -40,9 +41,9 @@ const Checkbox = ({ id, label, checked, onChange }) => (
             id={id}
             checked={checked}
             onChange={onChange}
-            className="h-5 w-5 text-gray-800 rounded border-gray-300 focus:ring-gray-800"
+            className="h-5 w-5 text-[#FA812F] rounded border-gray-300 focus:ring-[#FA812F]"
         />
-        <span className="text-gray-800 font-medium">{label}</span>
+        <span className="text-[#3A2E2E] font-medium">{label}</span>
     </label>
 );
 
@@ -53,10 +54,10 @@ const Step1 = ({ formData, handleInputChange, errors }) => (
       key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <h2 className="text-2xl font-bold text-gray-800">Your Information</h2>
+      <h2 className="text-2xl font-bold text-[#3A2E2E]">Your Information</h2>
       <div className="flex flex-wrap gap-4">
         <div className="flex-1 min-w-[45%]"><InputField label="First Name" id="firstName" placeholder="First" required value={formData.firstName} onChange={handleInputChange} error={errors.firstName} /></div>
-        <div className="flex-1 min-w-[45%] mt-6 md:mt-0"><InputField label="Last Name" id="lastName" placeholder="Last" required value={formData.lastName} onChange={handleInputChange} error={errors.lastName} /></div>
+        <div className="flex-1 min-w-[45%] md:mt-0"><InputField label="Last Name" id="lastName" placeholder="Last" required value={formData.lastName} onChange={handleInputChange} error={errors.lastName} /></div>
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         <InputField label="Email" id="email" type="email" placeholder="example@domain.com" required value={formData.email} onChange={handleInputChange} error={errors.email} />
@@ -74,10 +75,10 @@ const Step2 = ({ formData, handleInputChange, errors }) => (
       key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <h2 className="text-2xl font-bold text-gray-800">Tell us about your service needs</h2>
+      <h2 className="text-2xl font-bold text-[#3A2E2E]">Tell us about your service needs</h2>
       <div>
-          <label className="text-gray-800 text-sm font-medium mb-2 block">
-              Requested Service Type {errors.serviceTypes && <span className="text-red-500">*</span>}
+          <label className="text-[#3A2E2E] text-sm font-medium mb-2 block">
+              Requested Service Type {errors.serviceTypes && <span className="text-[#E01E00]">*</span>}
           </label>
           <div className="flex flex-wrap gap-6 md:gap-10">
               {Object.keys(formData.serviceTypes).map(service => (
@@ -85,7 +86,7 @@ const Step2 = ({ formData, handleInputChange, errors }) => (
               ))}
           </div>
           <p className="text-xs text-gray-500 mt-1">Please select all that apply</p>
-          {errors.serviceTypes && <p className="text-red-500 text-xs mt-1">{errors.serviceTypes}</p>}
+          {errors.serviceTypes && <p className="text-[#E01E00] text-xs mt-1">{errors.serviceTypes}</p>}
       </div>
     </motion.div>
 );
@@ -95,27 +96,27 @@ const Step3 = ({ formData, handleInputChange, errors }) => (
       key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <h2 className="text-2xl font-bold text-gray-800">Tell us about your event</h2>
+      <h2 className="text-2xl font-bold text-[#3A2E2E]">Tell us about your event</h2>
       
       <div>
-        <label className="text-gray-800 text-sm font-medium mb-2 block">Type of Event</label>
+        <label className="text-[#3A2E2E] text-sm font-medium mb-2 block">Type of Event</label>
         <div className="flex flex-wrap gap-6">
             {['Wedding', 'Corporate Event', 'Private Celebration'].map(type => (
                 <label key={type} className="flex items-center space-x-2 cursor-pointer">
-                    <input type="radio" name="eventType" value={type} checked={formData.eventType === type} onChange={handleInputChange} className="h-4 w-4 text-gray-800 border-gray-300 focus:ring-gray-800" />
-                    <span className="text-gray-800">{type}</span>
+                    <input type="radio" name="eventType" value={type} checked={formData.eventType === type} onChange={handleInputChange} className="h-4 w-4 text-[#FA812F] border-gray-300 focus:ring-[#FA812F]" />
+                    <span className="text-[#3A2E2E]">{type}</span>
                 </label>
             ))}
         </div>
       </div>
 
       <div>
-        <label className="text-gray-800 text-sm font-medium mb-2 block">Do you already have a Venue?</label>
+        <label className="text-[#3A2E2E] text-sm font-medium mb-2 block">Do you already have a Venue?</label>
         <div className="flex flex-wrap gap-6">
             {['Yes', 'No'].map(status => (
                 <label key={status} className="flex items-center space-x-2 cursor-pointer">
-                    <input type="radio" name="hasVenue" value={status} checked={formData.hasVenue === status} onChange={handleInputChange} className="h-4 w-4 text-gray-800 border-gray-300 focus:ring-gray-800" />
-                    <span className="text-gray-800">{status}</span>
+                    <input type="radio" name="hasVenue" value={status} checked={formData.hasVenue === status} onChange={handleInputChange} className="h-4 w-4 text-[#FA812F] border-gray-300 focus:ring-[#FA812F]" />
+                    <span className="text-[#3A2E2E]">{status}</span>
                 </label>
             ))}
         </div>
@@ -131,14 +132,14 @@ const Step3 = ({ formData, handleInputChange, errors }) => (
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="anythingElse" className="text-gray-800 text-sm font-medium mb-1">Anything Else</label>
+        <label htmlFor="anythingElse" className="text-[#3A2E2E] text-sm font-medium mb-1">Anything Else</label>
         <textarea
             id="anythingElse"
             placeholder="Please let us know anything else you feel is important for your event."
             rows="4"
             value={formData.anythingElse}
             onChange={handleInputChange}
-            className="p-3 bg-white/70 rounded-lg border border-transparent focus:border-blue-400 focus:bg-white outline-none transition duration-200 text-gray-700 resize-none"
+            className="p-3 bg-white/70 rounded-lg border border-transparent focus:border-[#FA812F] focus:bg-white outline-none transition duration-200 text-[#3A2E2E] resize-none"
         />
       </div>
     </motion.div>
@@ -200,7 +201,6 @@ export default function QuoteForm() {
     }
   };
 
-  // --- VALIDATION FUNCTIONS (NO CHANGES HERE) ---
   const validateStep1 = () => {
     const newErrors = {};
     if (!formData.firstName.trim()) newErrors.firstName = 'First Name is required.';
@@ -246,7 +246,6 @@ export default function QuoteForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // --- NAVIGATION (NO CHANGES HERE) ---
   const handleNext = () => {
     let isValid = false;
     if (currentStep === 1) {
@@ -269,7 +268,6 @@ export default function QuoteForm() {
     }
   };
 
-  // --- SUBMISSION (NO CHANGES HERE) ---
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -325,7 +323,6 @@ export default function QuoteForm() {
     }
   };
 
-  // --- RENDER LOGIC (UPDATED TO USE EXTERNAL COMPONENTS) ---
   const renderStep = () => {
     const stepProps = { formData, handleInputChange, errors };
     switch (currentStep) {
@@ -336,9 +333,9 @@ export default function QuoteForm() {
     }
   };
 
-
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center">
+    <PageWrapper>  
+    <div className="min-h-screen bg-white flex flex-col items-center mb-30">
       
       {/* Animated Header Background with Quote */}
       <div className="w-full h-80 relative overflow-hidden flex items-center justify-center bg-gray-500/50">
@@ -355,11 +352,11 @@ export default function QuoteForm() {
         </AnimatePresence>
         
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="bg-blue-300/80 backdrop-blur-sm p-4 sm:p-8 max-w-sm sm:max-w-lg w-full text-center rounded-lg shadow-2xl mx-4">
-            <h3 className="text-xs sm:text-sm font-semibold tracking-widest text-gray-700 uppercase mb-1 sm:mb-2 border-b border-gray-500 inline-block pb-1">
+          <div className="bg-[#F9B233]/80 backdrop-blur-sm p-4 sm:p-8 max-w-sm sm:max-w-lg w-full text-center rounded-lg shadow-2xl mx-4">
+            <h3 className="text-xs sm:text-sm font-semibold tracking-widest text-[#3A2E2E] uppercase mb-1 sm:mb-2 border-b border-[#3A2E2E] inline-block pb-1">
               REQUEST A QUOTE
             </h3>
-            <p className="text-lg sm:text-2xl font-serif italic text-gray-800">
+            <p className="text-lg sm:text-2xl font-serif italic text-[#3A2E2E]">
               Focus on Forever, We'll Handle the Details.
             </p>
           </div>
@@ -368,14 +365,14 @@ export default function QuoteForm() {
 
       {/* Form Container */}
       <div className="w-full max-w-3xl mt-12 z-10 p-4"> 
-        <form onSubmit={handleSubmit} className="bg-blue-100 p-8 md:p-10 rounded-xl shadow-2xl">
+        <form onSubmit={handleSubmit} className="bg-[#FFF8E7] p-8 md:p-10 rounded-xl shadow-2xl">
           
           {/* Progress Bar & Step Indicator */}
           <div className="mb-8">
-            <p className="text-sm text-gray-600 mb-2 font-semibold">Step {currentStep} of {totalSteps}</p>
+            <p className="text-sm text-[#3A2E2E] mb-2 font-semibold">Step {currentStep} of {totalSteps}</p>
             <div className="h-2 bg-white rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gray-800 rounded-full"
+                className="h-full bg-[#FA812F] rounded-full"
                 initial={{ width: `${((currentStep - 1) / totalSteps) * 100}%` }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.5, type: 'tween' }}
@@ -404,7 +401,7 @@ export default function QuoteForm() {
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between mt-8 pt-6 border-t border-blue-200">
+          <div className="flex justify-between mt-8 pt-6 border-t border-[#F9B233]">
             {currentStep > 1 && (
               <button type="button" onClick={handlePrev} className="px-6 py-3 bg-gray-400 text-white rounded-lg font-semibold hover:bg-gray-500 transition duration-200">Previous</button>
             )}
@@ -412,7 +409,7 @@ export default function QuoteForm() {
               {currentStep < totalSteps ? (
                 <button
                   type="button" onClick={handleNext} disabled={loading}
-                  className="px-6 py-3 bg-gray-800 text-white rounded-lg font-semibold hover:bg-gray-900 transition duration-200 shadow-md disabled:opacity-50"
+                  className="px-6 py-3 bg-[#FA812F] text-white rounded-lg font-semibold hover:bg-[#E01E00] transition duration-200 shadow-md disabled:opacity-50"
                 >
                   Next
                 </button>
@@ -438,5 +435,6 @@ export default function QuoteForm() {
       </div>
       <div className='pb-20'></div>
     </div>
+    </PageWrapper>
   );
 }
