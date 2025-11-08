@@ -42,11 +42,11 @@ const MarqueeContent = ({ images }) => (
 export default function VisualMarquee() {
   return (
     <div className="relative overflow-hidden py-12 md:py-20 bg-white">
-      <div className="whitespace-nowrap flex overflow-hidden">
+      <div className="flex overflow-hidden">
         <div 
           className="flex animate-marquee"
           style={{ 
-            width: 'max-content',
+            willChange: 'transform',
           }}
         >
           {/* First set */}

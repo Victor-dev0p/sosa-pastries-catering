@@ -31,17 +31,29 @@ html, body {
 }
 
 /* globals.css */
+/* Add webkit prefix for Safari/iOS */
+@-webkit-keyframes marquee-scroll {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-50%); 
+  }
+}
+
 @keyframes marquee-scroll {
   from {
     transform: translateX(0);
   }
   to {
-    /* Translates the full width of one set of duplicated content */
     transform: translateX(-50%); 
   }
 }
 
 /* Define the utility class used in the component */
 .animate-marquee {
-  animation: marquee-scroll 20s linear infinite; /* 60s is from the component's scrollDuration */
+  animation: marquee-scroll 20s linear infinite;
+  -webkit-animation: marquee-scroll 20s linear infinite;
+  will-change: transform;
+  -webkit-will-change: transform;
 }
