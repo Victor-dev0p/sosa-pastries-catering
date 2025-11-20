@@ -119,7 +119,7 @@ export default function Contact() {
                     <div className="space-y-4">
                         <div>
                             <h3 className="font-semibold text-lg text-[#3A2E2E]">📍 Address</h3>
-                            <p className="text-[#3A2E2E]">123 Celebration Street, Lagos, Nigeria</p>
+                            <p className="text-[#3A2E2E]">13 Osamwonyi Street, off Ekehuan road, Benin city, Edo State.</p>
                         </div>
                         <div>
                             <h3 className="font-semibold text-lg text-[#3A2E2E]">📞 Phone</h3>

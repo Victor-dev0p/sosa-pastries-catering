@@ -153,10 +153,12 @@ export default function FloatingButtons({
 
           {/* CTA Button in Sidebar */}
           <div className="mt-8">
-            <button className="w-full bg-[#f7bfa0] px-2 py-1 md:px-4 md:py-4 rounded-full hover:bg-[#f4a77d] transition-colors text-white font-medium text-xs
-            md:text-sm">
-              Request a Quote
-            </button>
+            <a href="/quote">
+              <button className="w-full bg-[#f7bfa0] px-2 py-1 md:px-4 md:py-4 rounded-full hover:bg-[#f4a77d] transition-colors text-white font-medium text-xs
+              md:text-sm">
+                Request a Quote
+              </button>
+            </a>
           </div>
         </nav>
       </div>

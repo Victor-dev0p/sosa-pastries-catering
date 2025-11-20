@@ -20,7 +20,7 @@ export default function About() {
           {/* Two Small Stacked Images */}
           <div className="flex flex-col justify-between gap-4 w-full md:w-1/2">
             <motion.img
-              src="/sosa3.jpg"
+              src="/services/cute-bday.jpg"
               alt="Catering event"
               className="rounded-2xl shadow-lg h-[200px] object-cover"
               initial={{ opacity: 0, y: -30 }}
@@ -28,7 +28,7 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.1 }}
             />
             <motion.img
-              src="/sosa2.jpg"
+              src="/services/layers.jpg"
               alt="Catering event"
               className="rounded-2xl shadow-lg h-[200px] object-cover"
               initial={{ opacity: 0, y: 30 }}
@@ -53,9 +53,10 @@ export default function About() {
             Whether it's a wedding, birthday, or intimate event, I'll help you make it
             beautifully memorable.
           </p>
-          <button className="mt-4 border-b-2 border-[#FA812F] pb-1 text-[#FA812F] hover:border-[#E01E00] hover:text-[#E01E00] transition-all duration-300 font-medium">
+          <a href="/about" 
+            className="mt-4 border-b-2 border-[#FA812F] pb-1 text-[#FA812F] hover:border-[#E01E00] hover:text-[#E01E00] transition-all duration-300 font-medium cursor-pointer">
             Learn More →
-          </button>
+          </a>
         </motion.div>
       </div>
     </WavySection>

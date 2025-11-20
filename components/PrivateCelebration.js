@@ -23,7 +23,7 @@ export default function PrivateCelebration() {
             to your taste.
           </p>
           <a
-            href="/private-celebration"
+            href="/services"
             className="text-[#8b3a3a] font-semibold hover:underline"
           >
             LEARN MORE »
@@ -36,7 +36,7 @@ export default function PrivateCelebration() {
           <motion.img
             src="/sosa.jpg"
             alt="Private Event"
-            className="rounded-2xl shadow-lg w-full md:w-1/2 h-[420px] object-cover"
+            className=" shadow-lg w-full md:w-1/2 h-[420px] object-cover"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -45,17 +45,17 @@ export default function PrivateCelebration() {
           {/* Two Stacked Images - Slightly Different Heights */}
           <div className="flex flex-col justify-between gap-4 w-full md:w-1/2">
             <motion.img
-              src="/sosa2.jpg"
+              src="/services/pot1.jpg"
               alt="Private Celebration Setup"
-              className="rounded-2xl shadow-lg h-[210px] object-cover"
+              className=" shadow-lg h-[210px] object-cover"
               initial={{ opacity: 0, y: -30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             />
             <motion.img
-              src="/sosa3.jpg"
+              src="/services/bdae.jpg"
               alt="Private Celebration Setup"
-              className="rounded-2xl shadow-lg h-[240px] object-cover"
+              className=" shadow-lg h-[240px] object-cover"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}

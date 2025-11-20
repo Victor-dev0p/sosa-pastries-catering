@@ -53,7 +53,7 @@ export default function AboutPage() {
                 <div className="flex flex-col md:flex-row gap-4">
                   {/* Tall Main Image */}
                   <motion.img
-                    src="/Work/team.webp"
+                    src="/Sosa.jpg"
                     alt="Private Event"
                     className="shadow-lg w-full md:w-1/2 h-[420px] object-cover"
                     initial={{ opacity: 0, x: 50 }}
@@ -72,7 +72,7 @@ export default function AboutPage() {
                       transition={{ duration: 0.6, delay: 0.1 }}
                     />
                     <motion.img
-                      src="/Work/hilda.webp"
+                      src="/Work/team.webp"
                       alt="Private Celebration Setup"
                       className="shadow-lg h-[240px] object-cover"
                       initial={{ opacity: 0, y: 30 }}
